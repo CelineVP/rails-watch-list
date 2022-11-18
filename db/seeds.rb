@@ -14,6 +14,8 @@ require 'open-uri'
 
 Movie.destroy_all
 
+size = "/w500"
+# poster_path =
 url = "https://tmdb.lewagon.com/movie/top_rated"
 movie_serialized = URI.open(url).read
 movies = JSON.parse(movie_serialized)
@@ -23,7 +25,7 @@ movies_results.each do |movie|
   Movie.create(
     { title: movie['title'],
       overview: movie['overview'],
-      poster_url: movie['poster_path'],
+      poster_url: movie["#{url}#{size}"],      #{poster_path}
       rating: movie['vote_average']}
   )
 end

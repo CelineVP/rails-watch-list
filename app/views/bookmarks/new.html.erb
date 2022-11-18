@@ -1,0 +1,25 @@
+<h1>Bookmarks</h1>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+      <h1>Add new tag for <%= @bookmark.name %></h1>
+
+      <%= simple_form_for [@list, @bookmark] do |f| %>
+
+        <% if @bookmark.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <%= @bookmark.errors.full_messages.join(", ") %>
+          </div>
+        <% end %>
+
+        <%= f.input :tag,
+          collection: Tag.all,
+          input_html: {multiple: true, data: {controller: "tom-select"}},
+          include_hidden: false
+        %>
+        <%= f.submit "Add tag", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
